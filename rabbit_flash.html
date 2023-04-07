@@ -1,0 +1,147 @@
+<html><body>
+<script>
+score1=0;
+document.write("<div id='sc1' name='sc1' style='position:absolute; left:500px;'>SCORE:"+score1+"</div>");
+for(var j=0;j<10;j++){
+for(var i=0;i<10;i++){
+document.write("<img id='bg"+i+j+"'name='bg"+i+j+"'= src='bg1.png' style='position:absolute; left:"+(50)*i+"px; top:"+(50)*j+"px;'>")
+}
+}
+for(var i=0;i<10;i++){
+document.write("<img id='fca"+i+j+"'name='fca"+i+j+"'= src='fake_carot.png' style='position:absolute; left:50px; top:"+(50)*i+"px;'>")
+}
+ca_x1=50
+ca_y1=100
+ca_x2=300
+ca_y2=300
+document.write("<img id='ca1' name='ca1' src='carot.png' style='position:absolute; left:50px; top:"+ca_y1+"px;'>");
+document.write("<img id='ca2' name='ca2' src='carot.png' style='position:absolute; left:300px; top:"+ca_y2+"px;'>");
+document.write("<img id='player' name='player' src='chara1.png' style='position:absolute; left:100px; top:100px;'>");
+document.write("<img id='enemy' name='enemy' src='chara2.png' style='position:absolute; left:300px; top:100px;'>");
+x1=100;
+y1=100;
+x2=300;
+y2=100;
+v2=50
+end1=0;
+spe1=300;
+document.onclick = muki1;
+muki=0;
+document.getElementById("sc1").innerHTML="SCORE:"+score1;
+
+function muki1(){
+muki+=1;
+if(muki==4){
+muki=0;
+}
+}
+
+timer1 = setTimeout(idou,spe1);
+
+function idou(){
+if(end1==0){
+y2=y2+v2;
+document.getElementById("enemy").style.top=y2;
+if(y2==450){
+v2=-50
+}
+if(y2==0){
+v2=50
+}
+}
+
+if(end1==0){
+if(muki==0){
+if(x1<450){
+x1=x1+50;
+document.getElementById("player").style.left=x1;
+}
+}else if(muki==1){
+if(y1<450){
+y1=y1+50;
+document.getElementById("player").style.top=y1;
+}
+}else if(muki==2){
+if(x1>0){
+x1=x1-50;
+document.getElementById("player").style.left=x1;
+}
+}else if(muki==3){
+if(y1>0){
+y1=y1-50;
+document.getElementById("player").style.top=y1;
+}
+}
+}
+if(e1atari()){
+end1=1;
+}
+if(ca2atari()){
+score1+=1000;
+ca_y2+=150;
+if(ca_y2==500){
+ca_y2=0;
+}
+if(ca_y2==550){
+ca_y2=50;
+}
+if(ca_y2==600){
+ca_y2=100;
+}
+if(ca_y2==650){
+ca_y2=150;
+}
+document.getElementById("ca2").style.top=ca_y2;
+}
+if(ca1atari()){
+score1+=100;
+ca_y1+=150;
+if(ca_y1==500){
+ca_y1=0;
+}
+if(ca_y1==550){
+ca_y1=50;
+}
+if(ca_y1==600){
+ca_y1=100;
+}
+if(ca_y1==650){
+ca_y1=150;
+}
+document.getElementById("ca1").style.top=ca_y1;
+}
+document.getElementById("sc1").innerHTML="SCORE:"+score1;
+if(score1<1000){
+spe1=500;
+}
+if((score1>999)&&(score1<2000)){
+spe1=400;
+}
+if((score1>1999)&&(score1<3000)){
+spe1=300;
+}
+if((score1>2999)&&(score1<4000)){
+spe1=200;
+}
+if((score1>3999)&&(score1<5000)){
+spe1=100;
+}
+timer1 = setTimeout(idou,spe1);
+
+}
+function e1atari()
+{
+return((x1 < (x2 + 50))&&(x2 <(x1 + 50))&&(y1 <(y2 + 50))&&(y2 <(y1 + 50)));
+}
+
+function ca2atari()
+{
+return((x1 < (ca_x2 + 50))&&(ca_x2 <(x1 + 50))&&(y1 <(ca_y2 + 50))&&(ca_y2 <(y1 + 50)));
+}
+function ca1atari()
+{
+return((x1 < (ca_x1 + 50))&&(ca_x1 <(x1 + 50))&&(y1 <(ca_y1 + 50))&&(ca_y1 <(y1 + 50)));
+}
+
+</script>
+</body></html>
